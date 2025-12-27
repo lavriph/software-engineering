@@ -1,1 +1,212 @@
-2025-10-08 2 , 1 3 ---24-1 --- TITLE R... R, . --- TITLE R - ... ---------------------------- , , , goto R Markdown --- TABLE . TITLE R - ... , , . r squarearea - functiona a2 rectanglearea - functiona, b a b circlearea - functionr pi r2 a - 6 b - 10 r - 4 totalarea - squareareaa rectangleareaa, b circlearear printpaste , totalarea 1 1 220.27 , . , , . --- TITLE R - - 1. ... 16 , , . r getarea - functionshape if shape side - as.numericreadline returnside2 else if shape a - as.numericreadline a b - as.numericreadline b returnab else if shape a - as.numericreadline a h - as.numericreadline h returnah else returnNA goto , . if-else . --- TITLE R - - 2. ... r libraryR6 Figure - R6ClassFigure, public list area function stop area Square - R6ClassSquare, inherit Figure, public list side NULL, initialize functionside selfside - side, area function selfside2 Rectangle - R6ClassRectangle, inherit Figure, public list a NULL, b NULL, initialize functiona, b selfa - a selfb - b , area function selfa selfb Parallelogram - R6ClassParallelogram, inherit Figure, public list a NULL, h NULL, initialize functiona, h selfa - a selfh - h , area function selfa selfh sq - Squarenew4 rc - Rectanglenew5, 8 pl - Parallelogramnew6, 3 areas - csqarea, rcarea, plarea sumareas , . R R6 . Figure area . --- TITLE R - - 3. - ... r myvector - c21,18,21,19,25,20,17,17,18,22,17,18,18,19,19,27,21,20,24,17, 15,24,24,29,19,14,21,17,19,18,18,20,21,21,19,17,21,13,17,13, 23,15,23,24,16,17,25,24,22 meanv - meanmyvector sdv - sdmyvector myvector2 - myvectorabsmyvector - meanv sdv myvector2 R . . , , . --- TITLE R - - 4. ... r librarypurrr nums - lista 15, b 610, c 1115 mapdblnums, mean.x emphasises , . mapdbl purrr mean . --- TITLE R - - 5. ... md title output htmldocument TITLE R - - 6. ... r tkelvin - 282.15 tcelsius - tkelvin - 273.15 tcelsius , . R Markdown , . --- TITLE R - - ... r libraryparallel meanofrnorm - functionn randomnumbers - rnormn meanrandomnumbers cl - makeClusterdetectCores - 1 result - parSapplycl, 150, functionx meanofrnorm10000 stopClustercl meanresult . parSapply , . --- TITLE R - - 7. ... R. . . - R6. . . R Markdown. . . . R. --- TITLE R - ...
+
+# Отчет по лабораторной работе №2
+# Основные парадигмы программирования в R
+
+**Дата:** 2025-10-08  
+**Семестр:** 2 курс, 1 полугодие (3 семестр)  
+**Группа:** ПИН-б-о-24-1  
+**Дисциплина:** Технологии программирования  
+**Студент:** Лаврентьев Даниил Евгеньевич  
+
+---
+
+## Цель работы
+Познакомиться с основными парадигмами программирования в языке R, изучить их принципы и реализовать практические задания для закрепления навыков.
+
+---
+
+## Теоретическая часть
+
+Каждая парадигма программирования задает свой подход к организации кода и обработке данных.  
+В ходе лабораторной работы рассматривались следующие принципы:
+
+| Парадигма | Ключевая идея |
+|------------|----------------|
+| Императивная | Программа как последовательность команд, изменяющих состояние памяти |
+| Структурная | Использование блоков, циклов, ветвлений вместо goto |
+| ООП | Представление программы как системы объектов с состоянием и поведением |
+| Векторная | Одновременная обработка целых наборов данных |
+| Функциональная | Применение функций высшего порядка и конвейеров |
+| Грамотное программирование | Использование R Markdown для репродуктивных отчетов |
+| Параллельная | Распараллеливание вычислений для ускорения работы |
+
+---
+
+## Практическая часть
+
+### 1. Императивное (процедурное) программирование
+
+**Задача:** рассчитать площадь квадрата, прямоугольника и круга, вывести общую площадь.
+
+```r
+square_area <- function(a) a^2
+rectangle_area <- function(a, b) a * b
+circle_area <- function(r) pi * r^2
+
+a <- 6; b <- 10; r <- 4
+total_area <- square_area(a) + rectangle_area(a, b) + circle_area(r)
+print(paste("Общая площадь:", total_area))
+```
+**Результат:**
+```
+[1] [1] "Общая площадь: 220.27"
+```
+В императивном подходе программа представляет собой последовательность команд, которые явно изменяют состояние программы. Здесь мы определяем функции для вычисления площадей, затем последовательно вычисляем и суммируем результаты, сохраняя промежуточные значения в переменных.
+
+---
+
+### 2. Структурное программирование
+
+**Задача:** [Вариант 16] рассчитать площадь заданных фигур (квадрат, прямоугольник, параллелограмм).
+
+```r
+get_area <- function(shape) {
+  if (shape == "квадрат") {
+    side <- as.numeric(readline("Введите сторону квадрата: "))
+    return(side^2)
+  } else if (shape == "прямоугольник") {
+    a <- as.numeric(readline("Введите сторону a: "))
+    b <- as.numeric(readline("Введите сторону b: "))
+    return(a*b)
+  } else if (shape == "параллелограмм") {
+    a <- as.numeric(readline("Введите сторону a: "))
+    h <- as.numeric(readline("Введите высоту h: "))
+    return(a*h)
+  } else {
+    return(NA)
+  }
+}
+```
+Структурное программирование исключает использование оператора goto и основывается на трех базовых структурах: последовательность, ветвление и циклы. В данном примере используется ветвление (if-else) для организации логики программы в зависимости от выбора пользователя.
+
+---
+
+### 3. Объектно-ориентированное программирование
+
+```r
+library(R6)
+
+Figure <- R6Class("Figure",
+  public = list(
+    area = function() stop("Метод area не определён")
+  )
+)
+
+Square <- R6Class("Square",
+  inherit = Figure,
+  public = list(
+    side = NULL,
+    initialize = function(side) self$side <- side,
+    area = function() self$side^2
+  )
+)
+
+Rectangle <- R6Class("Rectangle",
+  inherit = Figure,
+  public = list(
+    a = NULL, b = NULL,
+    initialize = function(a, b) { self$a <- a; self$b <- b },
+    area = function() self$a * self$b
+  )
+)
+
+Parallelogram <- R6Class("Parallelogram",
+  inherit = Figure,
+  public = list(
+    a = NULL, h = NULL,
+    initialize = function(a, h) { self$a <- a; self$h <- h },
+    area = function() self$a * self$h
+  )
+)
+
+sq <- Square$new(4)
+rc <- Rectangle$new(5, 8)
+pl <- Parallelogram$new(6, 3)
+areas <- c(sq$area(), rc$area(), pl$area())
+sum(areas)
+```
+ООП позволяет организовать код вокруг объектов, которые объединяют данные и методы. В R используется система R6 для создания классов. Здесь мы создаем иерархию классов фигур с общим родительским классом Figure и переопределяем метод area() в дочерних классах.
+
+---
+
+### 4. Векторное программирование
+
+```r
+my_vector <- c(21,18,21,19,25,20,17,17,18,22,17,18,18,19,19,27,21,20,24,17,
+               15,24,24,29,19,14,21,17,19,18,18,20,21,21,19,17,21,13,17,13,
+               23,15,23,24,16,17,25,24,22)
+
+mean_v <- mean(my_vector)
+sd_v <- sd(my_vector)
+my_vector2 <- my_vector[abs(my_vector - mean_v) < sd_v]
+my_vector2
+```
+Векторное программирование в R позволяет работать с целыми векторами данных без использования явных циклов. Операции применяются ко всем элементам вектора одновременно. В примере мы фильтруем вектор, оставляя только значения, которые отклоняются от среднего не более чем на одно стандартное отклонение.
+
+---
+
+### 5. Функциональное программирование
+
+```r
+library(purrr)
+
+nums <- list(a = 1:5, b = 6:10, c = 11:15)
+map_dbl(nums, ~ mean(.x))
+```
+Функциональное программирование emphasises использование функций высшего порядка, которые принимают другие функции как аргументы. Функция map_dbl() из пакета purrr применяет функцию mean() к каждому элементу списка и возвращает вектор результатов.
+
+---
+
+### 6. Грамотное программирование
+
+```md
+title: "Пример отчета"
+output: html_document
+```
+### Расчёт температуры
+```{r}
+t_kelvin <- 282.15
+t_celsius <- t_kelvin - 273.15
+t_celsius
+```
+Грамотное программирование объединяет код, результаты его выполнения и текстовые пояснения в одном документе. R Markdown позволяет создавать воспроизводимые отчеты, где код и его вывод интегрированы с текстовым описанием.
+
+---
+
+### 7. Параллельное программирование
+
+```r
+library(parallel)
+
+mean_of_rnorm <- function(n) {
+  random_numbers <- rnorm(n)
+  mean(random_numbers)
+}
+
+cl <- makeCluster(detectCores() - 1)
+result <- parSapply(cl, 1:50, function(x) mean_of_rnorm(10000))
+stopCluster(cl)
+mean(result)
+```
+Параллельное программирование позволяет распределить вычисления между несколькими ядрами процессора. В этом примере мы создаем кластер из доступных ядер и используем функцию parSapply() для параллельного выполнения множества вычислений средних значений случайных чисел, что значительно ускоряет обработку.
+
+---
+
+## Выводы
+В ходе работы изучены основные парадигмы программирования в R. Императивный подход демонстрирует последовательное выполнение команд. Структурный стиль организует код через ветвления и циклы. Объектно-ориентированное программирование реализовано через систему классов R6.
+
+Векторная обработка позволяет работать с данными без циклов. Функциональный стиль использует функции высшего порядка. Грамотное программирование объединяет код и текст в R Markdown. Параллельные вычисления ускоряют обработку через многопоточность.
+
+Каждая парадигма имеет свою область применения. Выбор подхода зависит от конкретной задачи. Изучение разных стилей программирования расширяет возможности эффективной работы в R.
+
+---
+
+## Ответы на контрольные вопросы
+
+**Императивное:** переменная, функция, оператор goto.  
+**Структурное:** теорема Бёма–Якопини.  
+**ООП:** инкапсуляция, наследование, полиморфизм.  
+**Векторное:** векторизация — поэлементная обработка.  
+**Функциональное:** функции `map`, `reduce`, `filter`.  
+**Грамотное:** R Markdown — воспроизводимость отчетов.  
+**Параллельное:** модель master-worker.
